@@ -665,13 +665,15 @@ However, the code in Listing 2-4 won’t compile yet. Let’s try it:
 $ cargo build
    Compiling guessing_game v0.1.0 (file:///projects/guessing_game)
 error[E0308]: mismatched types
-  --> src/main.rs:22:21
-   |
-22 |     match guess.cmp(&secret_number) {
-   |                     ^^^^^^^^^^^^^^ expected struct `String`, found integer
-   |
-   = note: expected reference `&String`
-              found reference `&{integer}`
+   --> src/main.rs:22:21
+    |
+22  |     match guess.cmp(&secret_number) {
+    |                 --- ^^^^^^^^^^^^^^ expected `&String`, found `&{integer}`
+    |                 |
+    |                 arguments to this method are incorrect
+    |
+    = note: expected reference `&String`
+               found reference `&{integer}`
 ```
 
 The core of the error states that there are *mismatched types*. Rust has a
